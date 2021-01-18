@@ -4,6 +4,12 @@
   "description": "Give a folder a public URL to enable no-frills https file downloading",
   "bin": "server.js",
   "main": "server.js",
+  "files": [
+    "package.json",
+    "package-lock.json",
+    "README.md",
+    "server.js"
+  ],
   "dependencies": {
     "ngrok": "^3.4.0",
     "parseurl": "^1.3.3",
