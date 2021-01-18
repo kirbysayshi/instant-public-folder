@@ -37,11 +37,12 @@ Features / Notes
 --------
 
 - Built in directory listing
+- Finds a random port, so run as many as you'd like!
 - Uses `send` module, which supports resuming, streaming, and range requests.
 - Allows anyone to download a file
 - Nearly zero security (at least has HTTPS!)
 - No auth / accounts required (unless you want to use paid ngrok)
-- Note: ngrok is a closed-source binary
+- Note: ngrok is a closed-source binary, and its tunnels expire unless you pay/auth. Generally most downloads complete within the expiration window, assuming you have a fast enough connection.
 
 Why???
 ------
