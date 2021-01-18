@@ -1,4 +1,4 @@
-#!/usr/env node
+#!/usr/bin/env node
 
 const http = require("http");
 const fs = require("fs");
