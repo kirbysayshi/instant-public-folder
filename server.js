@@ -20,13 +20,12 @@ const server = http.createServer(function onRequest(req, res) {
 async function run() {
   const port = await portfinder.getPortPromise({ port: 8686 });
   server.listen(port, "0.0.0.0");
-  const cmd = path.join(__dirname, "node_modules", ".bin", "ngrok");
-  spawn(cmd, ["http", port], { stdio: "inherit" }).on("exit", () =>
-    process.exit(0)
-  );
+  spawn(`npx`, ["--no-install", "ngrok", "http", port], {
+    stdio: "inherit",
+  }).on("exit", () => process.exit(0));
 }
 
-run().catch(err => {
+run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
