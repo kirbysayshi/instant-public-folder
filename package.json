@@ -1,6 +1,6 @@
 {
   "name": "instant-public-folder",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Give a folder a public URL to enable no-frills https file downloading",
   "bin": "server.js",
   "main": "server.js",
