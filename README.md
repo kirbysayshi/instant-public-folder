@@ -8,7 +8,6 @@ Usage
 
 ```sh
 npx instant-public-folder
-# and send the https url from the ngrok interface to your friends!
 ```
 
 OR
@@ -16,8 +15,11 @@ OR
 ```sh
 npm -g instant-public-folder
 instant-public-folder
-# and send the https url from the ngrok interface to your friends!
 ```
+
+And send the https url from the ngrok interface to your friends!
+
+### How to Zip
 
 You probably want to zip any large files first. Here are some ways to do that on OSX:
 
@@ -28,7 +30,11 @@ brew install p7zip
 
 ```sh
 brew install zip
-zip -9 -u name-of-my-archive.zip file1 file2 filen
+zip -9 -u name-of-my-archive.zip file1 file2 fileN
+```
+
+```sh
+tar -czf name-of-my-archive.tar.gz file1 file2 fileN
 ```
 
 Or just right click a folder in Finder and choose "Compress" :)
