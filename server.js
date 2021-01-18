@@ -20,7 +20,15 @@ const server = http.createServer(function onRequest(req, res) {
 async function run() {
   const port = await portfinder.getPortPromise({ port: 8686 });
   server.listen(port, "0.0.0.0");
-  spawn(`npx`, ["--no-install", "ngrok", "http", port], {
+
+  // Wish there were a better way to lookup the bin...
+  // npx --no-install ngrok did NOT work
+  const ngrokPkgPath = require.resolve("ngrok/package.json");
+  const ngrokPkg = require('ngrok/package.json');
+  const ngrokFolder = path.dirname(ngrokPkgPath);
+  const ngrokBin = path.join(ngrokFolder, ngrokPkg.bin.ngrok);
+
+  spawn(ngrokBin, ["http", port], {
     stdio: "inherit",
   }).on("exit", () => process.exit(0));
 }
