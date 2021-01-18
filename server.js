@@ -3,11 +3,8 @@ const fs = require("fs");
 const path = require("path");
 const parseUrl = require("parseurl");
 const send = require("send");
+const portfinder = require("portfinder");
 const { spawn } = require("child_process");
-
-const HTTP_PORT = 8686;
-
-// Note: the majority of this code is copy/pasted from the `send` module's examples
 
 const server = http.createServer(function onRequest(req, res) {
   send(req, parseUrl(req).pathname, {
@@ -18,13 +15,21 @@ const server = http.createServer(function onRequest(req, res) {
     .pipe(res);
 });
 
-server.listen(HTTP_PORT, "0.0.0.0");
+async function run() {
+  const port = await portfinder.getPortPromise({ port: 8686 });
+  server.listen(port, "0.0.0.0");
+  const cmd = path.join(__dirname, "node_modules", ".bin", "ngrok");
+  spawn(cmd, ["http", port], { stdio: "inherit" }).on("exit", () =>
+    process.exit(0)
+  );
+}
 
-const cmd = path.join(__dirname, "node_modules", ".bin", "ngrok");
+run().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
-spawn(cmd, ["http", HTTP_PORT], { stdio: "inherit" }).on("exit", () =>
-  process.exit(0)
-);
+// Note: the majority of this code is copy/pasted from the `send` module's examples
 
 function directory(res, path) {
   const stream = this;
